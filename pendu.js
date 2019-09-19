@@ -1619,7 +1619,14 @@ let chiffre = 0;
 let wrongLetters = new Set([]);
 let tries = 6;
 console.log(randomWord)
-
+let arrayImage = [
+    "https://i.imgur.com/QFZ92Z2.jpg", //2 jambes 2 bras
+    "https://i.imgur.com/HiGxCTf.jpg", //2 bras 1 jambe
+    "https://i.imgur.com/M1dluN0.jpg", //2 bras 
+    "https://i.imgur.com/Pv8lFQl.jpg", //1 bras 
+    "https://i.imgur.com/rfoMUNA.jpg", //1 corps 
+    "https://i.imgur.com/j8xOZwL.jpg" //tete 
+]
 
 
 document.getElementById("field").textContent = motDevine.join(" ");
@@ -1633,7 +1640,7 @@ guessLetter = () => {
     let answer = document.getElementById("input").value.toUpperCase();
     let trouver = false;
 
-  for (let i = 0; i < mot.length; i++) {
+  for(let i = 0; i < mot.length; i++) {
     if (mot[i] == answer) {
       if (answer != motDevine[i]) {
         motDevine[i] = answer;
@@ -1643,8 +1650,10 @@ guessLetter = () => {
       }
     }}
     if(!trouver){
+        
         wrongLetters.add(answer);
         document.getElementById("wrongLetters").innerText = [...wrongLetters].join(" ");
+        document.querySelector("img").src = arrayImage[tries-1]
         tries--;
         document.getElementById("tries").textContent = `Il te reste ${tries}/6`
         if(tries == 0){
